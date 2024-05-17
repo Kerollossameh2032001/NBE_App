@@ -7,7 +7,7 @@ const constantImages = {
     VisaMetal: require('../../../assets/images/visa_metal.png'),
     VisaWifi: require('../../../assets/images/visa_wifi.png'),
     successModal: require('../../../assets/images/success_modal.png'),
-   
+
     gridTabIcon: require('../../../assets/images/grid_tab_icon.png'),
     addIcon: require('../../../assets/images/add_icon.png'),
     listTabIcon: require('../../../assets/images/list_tab_icon.png'),
@@ -26,6 +26,34 @@ const constantImages = {
         image3: require('../../../assets/images/dummey_data/history/image3.png'),
         image4: require('../../../assets/images/dummey_data/history/image4.png'),
         image5: require('../../../assets/images/dummey_data/history/image5.png'),
+    },
+
+    beneficiaryDummeyData: {
+        image1: require('../../../assets/images/dummey_data/beneficiaty/image1.png'),
+        image2: require('../../../assets/images/dummey_data/beneficiaty/image2.png'),
+        image3: require('../../../assets/images/dummey_data/beneficiaty/image3.png'),
+        image4: require('../../../assets/images/dummey_data/beneficiaty/image4.png'),
+        image5: require('../../../assets/images/dummey_data/beneficiaty/image5.png'),
+        image6: require('../../../assets/images/dummey_data/beneficiaty/image6.png'),
+        image7: require('../../../assets/images/dummey_data/beneficiaty/image7.png'),
+        image8: require('../../../assets/images/dummey_data/beneficiaty/image8.png'),
+        image9: require('../../../assets/images/dummey_data/beneficiaty/image9.png'),
+        image10: require('../../../assets/images/dummey_data/beneficiaty/image10.png'),
+        image11: require('../../../assets/images/dummey_data/beneficiaty/image11.png'),
+        image12: require('../../../assets/images/dummey_data/beneficiaty/image12.png'),
+        image13: require('../../../assets/images/dummey_data/beneficiaty/image13.png'),
+        image14: require('../../../assets/images/dummey_data/beneficiaty/image14.png'),
+        image15: require('../../../assets/images/dummey_data/beneficiaty/image15.png'),
+        image16: require('../../../assets/images/dummey_data/beneficiaty/image16.png'),
+        image17: require('../../../assets/images/dummey_data/beneficiaty/image17.png'),
+        image18: require('../../../assets/images/dummey_data/beneficiaty/image18.png'),
+        image19: require('../../../assets/images/dummey_data/beneficiaty/image19.png'),
+        image20: require('../../../assets/images/dummey_data/beneficiaty/image20.png'),
+        image21: require('../../../assets/images/dummey_data/beneficiaty/image21.png'),
+        image22: require('../../../assets/images/dummey_data/beneficiaty/image22.png'),
+        image23: require('../../../assets/images/dummey_data/beneficiaty/image23.png'),
+        image24: require('../../../assets/images/dummey_data/beneficiaty/image24.png'),
+        image25: require('../../../assets/images/dummey_data/beneficiaty/image25.png'),
     },
 }
 export default constantImages;
