@@ -114,6 +114,14 @@ const englishText = {
     noContentTitle: 'No Beneficiaries',
     noContentSubTitle1: 'You don’t have beneficiaries, add',
     noContentSubTitle2: ' some so you can send money',
+
+    ///beneficiary Details
+    transactionsTitle: 'Transactions History',
+    beneficiaryDetailsEmpty: {
+        title: 'No History',
+        subTitle1: 'Not a single transaction was made to',
+        subTitle2: 'this account',
+    }
 }
 
 export default englishText;

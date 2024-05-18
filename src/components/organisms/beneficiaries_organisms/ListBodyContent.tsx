@@ -7,32 +7,31 @@ import { faDollar, faPhone } from '@fortawesome/free-solid-svg-icons';
 import BuildContactInfo from '../../molecules/beneficiary_molecules/BuildContactInfo';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import BuildListItem from '../../molecules/beneficiary_molecules/BuildListItem';
+import { binifeciaryAccountDataType } from '../../../core/dummy_data/BeneficiaryData';
 
 type ListBodyContentProps = {
-  data: {
-    key: string;
-    name: string;
-    lastName: string;
-    image: any;
-    number: string;
-    accountBalance: string;
-  }[],
+  data: binifeciaryAccountDataType[],
+  goToDetails: (itemId: number) => void
 }
 
-const ListBodyContent = ({ data }: ListBodyContentProps) => {
+const ListBodyContent = ({ data, goToDetails }: ListBodyContentProps) => {
   const theme = useContext(ThemeContext);
   return (
     <FlatList
       data={data}
-      renderItem={({ item, index }) =>
+      renderItem={({ item }) =>
         <BuildListItem
           model={item}
-          onPress={() => { }}
+          onPress={() => {
+            console.log(item.key);
+            
+            goToDetails(item.key);
+          }}
         />
       }
       showsVerticalScrollIndicator={false}
-      keyExtractor={(item) => item.key}
-      
+      keyExtractor={(item) => item.key.toString()}
+
     />
   )
 }

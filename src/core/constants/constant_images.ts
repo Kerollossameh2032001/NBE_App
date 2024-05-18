@@ -12,6 +12,7 @@ const constantImages = {
     addIcon: require('../../../assets/images/add_icon.png'),
     listTabIcon: require('../../../assets/images/list_tab_icon.png'),
     noContentIcon: require('../../../assets/images/no_content_image.png'),
+    beneficiaryEmptyIcon: require('../../../assets/images/beneficiary_empty.png'),
 
     connectionDummeyData: {
         image1: require('../../../assets/images/dummey_data/connection/image1.png'),

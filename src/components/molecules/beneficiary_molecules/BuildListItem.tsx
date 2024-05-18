@@ -3,22 +3,18 @@ import { StyleSheet, TouchableOpacity, Image, View, Text } from 'react-native'
 import { ThemeContext } from '../../../App';
 import BuildContactInfo from './BuildContactInfo';
 import { faDollar, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { binifeciaryAccountDataType } from '../../../core/dummy_data/BeneficiaryData';
 
 type BuildListItemProps = {
-    onPress: () => void;
-    model: {
-        key: string;
-        name: string;
-        lastName: string;
-        image: any;
-        number: string;
-        accountBalance: string;
-    },
+    onPress?: () => void;
+    disabled?: boolean | undefined
+    model: binifeciaryAccountDataType,
 }
-const BuildListItem = ({ onPress, model }: BuildListItemProps) => {
+const BuildListItem = ({ onPress, model, disabled }: BuildListItemProps) => {
     const theme = useContext(ThemeContext);
     return (
         <TouchableOpacity
+            disabled={disabled}
             onPress={onPress}
             style={[
                 styles.itemContainer,

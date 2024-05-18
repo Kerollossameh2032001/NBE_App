@@ -1,16 +1,10 @@
 import React, { useContext } from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import { ThemeContext } from '../../../App';
+import { binifeciaryAccountDataType } from '../../../core/dummy_data/BeneficiaryData';
 
 type BuildGridItem = {
-    model: {
-        key: string;
-        name: string;
-        lastName: string;
-        image: any;
-        number: string;
-        accountBalance: string;
-    },
+    model: binifeciaryAccountDataType,
     onPress: () => void
 }
 const BuildGridItem = ({ model, onPress }: BuildGridItem) => {

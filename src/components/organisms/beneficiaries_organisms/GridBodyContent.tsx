@@ -2,17 +2,12 @@ import React, { useContext } from 'react'
 import { FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { ThemeContext } from '../../../App';
 import BuildGridItem from '../../molecules/beneficiary_molecules/BuildGridItem';
+import { binifeciaryAccountDataType } from '../../../core/dummy_data/BeneficiaryData';
 type GridBodyContentProps = {
-    data: {
-        key: string;
-        name: string;
-        lastName: string;
-        image: any;
-        number: string;
-        accountBalance: string;
-    }[],
+    data: binifeciaryAccountDataType[],
+    goToDetails: (itemId: number) => void,
 }
-const GridBodyContent = ({ data }: GridBodyContentProps) => {
+const GridBodyContent = ({ data, goToDetails }: GridBodyContentProps) => {
     const theme = useContext(ThemeContext);
     return (
         <FlatList
@@ -20,11 +15,11 @@ const GridBodyContent = ({ data }: GridBodyContentProps) => {
             renderItem={({ item, index }) =>
                 <BuildGridItem
                     model={item}
-                    onPress={() => { }}
+                    onPress={() => goToDetails(item.key)}
                 />
             }
             showsVerticalScrollIndicator={false}
-            keyExtractor={(item) => item.key}
+            keyExtractor={(item) => item.key.toString()}
             numColumns={4}
             columnWrapperStyle={styles.row}
             contentContainerStyle={styles.container}

@@ -116,6 +116,14 @@ const arabicText = {
     noContentTitle: 'لا يوجد مستفيدون',
     noContentSubTitle1: 'ليس لديك مستفيدين، قم بإضافة',
     noContentSubTitle2: 'بعضهم حتى تتمكن من إرسال الأموال',
+
+    ///beneficiary Details
+    transactionsTitle: 'تاريخ المعاملات',
+    beneficiaryDetailsEmpty: {
+        title: 'لا يوجد تاريخ',
+        subTitle1: 'لم يتم إجراء أي معاملة واحدة إلى',
+        subTitle2: 'هذا الحساب',
+    }
 }
 
 export default arabicText;

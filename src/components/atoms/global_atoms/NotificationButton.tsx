@@ -1,18 +1,19 @@
 import { faBell } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import React, { useContext } from 'react'
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { StyleProp, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native'
 import { ThemeContext } from '../../../App'
 
 type NotificationButtonProps = {
     onPress: () => void,
+    style?: StyleProp<ViewStyle>
 }
-const NotificationButton = ({ onPress }: NotificationButtonProps) => {
+const NotificationButton = ({ onPress, style }: NotificationButtonProps) => {
     const theme = useContext(ThemeContext);
     return (
         <TouchableOpacity
             onPress={onPress}
-            style={[styles.notificationBtnStyle, { backgroundColor: theme?.ThemeData.colors.textColor }]}>
+            style={[styles.notificationBtnStyle, { backgroundColor: theme?.ThemeData.colors.textColor }, style]}>
             <FontAwesomeIcon icon={faBell} size={17} color={theme?.ThemeData.colors.iconColor} />
         </TouchableOpacity>
     )
@@ -27,5 +28,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    
+
 })

@@ -5,7 +5,7 @@ import Divider from '../../atoms/global_atoms/Divider'
 import { ThemeContext } from '../../../App'
 
 type HistoryItemProps = {
-    image: ImageSourcePropType | undefined,
+    image?: ImageSourcePropType | undefined,
     name: string,
     date: string,
     price: string
@@ -17,9 +17,9 @@ const HistoryItem = ({ image, name, price, date }: HistoryItemProps) => {
             <View style={styles.itemContainer}>
                 <View style={styles.contentStyle}>
 
-                    <View style={[styles.imageContainer, { backgroundColor: theme?.ThemeData.inputStyles.primaryInputColors.backgroundColor }]}>
+                    {image && <View style={[styles.imageContainer, { backgroundColor: theme?.ThemeData.inputStyles.primaryInputColors.backgroundColor }]}>
                         <Image source={image} />
-                    </View>
+                    </View>}
 
                     <View style={{ paddingLeft: '5%' }}>
 
