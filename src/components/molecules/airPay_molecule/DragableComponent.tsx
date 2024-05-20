@@ -33,6 +33,8 @@ const DragableComponent = ({ content, dropArea }: DragableComponentProps) => {
             },
             onPanResponderMove: (_, gesture) => {
                 if (gesture.dy > 3) {
+                    console.log(gesture.dy);
+
                     position.setValue({ x: 0, y: gesture.dy });
                 }
             },
@@ -44,17 +46,24 @@ const DragableComponent = ({ content, dropArea }: DragableComponentProps) => {
 
                 // position.flattenOffset();
                 console.log(dropAreaY);
+                position.flattenOffset();
+
+                // const dropAreaLayout = dropAreaLayoutRef.current;
+                // console.log('Card final position:', { x, y });
+                // console.log('Drop area layout:', dropAreaLayout);
 
                 if (dropAreaLayoutRef) {
+                    const { left: x, top: y } = position.getLayout();
                     const droppedInArea = (
-                        Number(position.x) >= dropAreaLayoutRef.current.x &&
-                        Number(position.x) <= dropAreaLayoutRef.current.x + dropAreaLayoutRef.current.width &&
-                        Number(position.y) >= dropAreaLayoutRef.current?.y &&
-                        Number(position.y) <= dropAreaLayoutRef.current.y + dropAreaLayoutRef.current.height
+                        Number(y) >= (dropAreaLayoutRef.current?.y - dropAreaLayoutRef.current?.height)
                     );
+                    console.log("position y:", position.y);
+                    console.log(dropAreaLayoutRef.current?.y - dropAreaLayoutRef.current?.height);
 
-                    console.log('Dropped in area:', droppedInArea);
-                    onDrop(droppedInArea);
+                    // console.log( Number(position.y) >= dropAreaLayoutRef.current?.y );
+                    const dropAreaCoordinate = new Animated.ValueXY();
+                    dropAreaCoordinate.setValue({ x: 0, y: dropAreaLayoutRef.current?.y - dropAreaLayoutRef.current?.height })
+                    console.log('Dropped in area:', position.y >= dropAreaCoordinate.y);
                 }
 
 
