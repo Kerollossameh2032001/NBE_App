@@ -123,7 +123,18 @@ const arabicText = {
         title: 'لا يوجد تاريخ',
         subTitle1: 'لم يتم إجراء أي معاملة واحدة إلى',
         subTitle2: 'هذا الحساب',
-    }
+    },
+
+    /// Add beneficiary
+    firstNameLabel: 'الاسم الأول',
+    firstNamePlaceholder: 'أدخل الاسم الأول',
+    lastNameLabel: 'اسم العائلة',
+    lastNamePlaceholder: 'أدخل اسم العائلة',
+    bankBranchLabel: 'فرع البنك',
+    accountNumberLabel: 'رقم الحساب',
+    phoneNumberLabel: 'رقم الهاتف',
+    emailLabel: 'البريد الإلكتروني',
+    addBeneficiaryBtnTxt: 'إضافة مستفيد',
 }
 
 export default arabicText;

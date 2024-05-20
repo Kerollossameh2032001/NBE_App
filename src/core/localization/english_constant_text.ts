@@ -1,3 +1,4 @@
+
 const englishText = {
 
     //Login constant Text
@@ -121,7 +122,18 @@ const englishText = {
         title: 'No History',
         subTitle1: 'Not a single transaction was made to',
         subTitle2: 'this account',
-    }
+    },
+
+    /// Add beneficiary
+    firstNameLabel: 'First name',
+    firstNamePlaceholder: 'Enter first name',
+    lastNameLabel: 'Last name',
+    lastNamePlaceholder: 'Enter last name',
+    bankBranchLabel: 'Bank branch',
+    accountNumberLabel: 'Account number',
+    phoneNumberLabel: 'Phone number',
+    emailLabel: 'Email',
+    addBeneficiaryBtnTxt: 'Add Beneficiar'
 }
 
 export default englishText;

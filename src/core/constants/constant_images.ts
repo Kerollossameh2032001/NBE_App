@@ -3,6 +3,7 @@ const constantImages = {
     finishBackGround: require('../../../assets/images/finish.png'),
     profileAvatar: require('../../../assets/images/profile.png'),
     greenCard: require('../../../assets/images/green_card.png'),
+    redCard: require('../../../assets/images/red_card.png'),
     VisaIcon: require('../../../assets/images/visa.png'),
     VisaMetal: require('../../../assets/images/visa_metal.png'),
     VisaWifi: require('../../../assets/images/visa_wifi.png'),

@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import HomeScreen, { HomeScreenWithDrawer } from './HomeScreen';
 import { RootBottomTabParamList, RootDrawerParamList } from '../../core/constants/RootStackParamList';
 import TransferScreen from './TransferScreen';
-import AirPayScreen from './AirPayScreen';
+import AirPayScreen, { AirPayScreenWithDrawer } from './AirPayScreen';
 import { LanguageContext, ThemeContext } from '../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
@@ -23,7 +23,7 @@ const Layout = () => {
     const theme = useContext(ThemeContext);
     const language = useContext(LanguageContext);
     return (
-        <Tab.Navigator 
+        <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerTransparent: true,
                 title: '',
@@ -101,7 +101,7 @@ const Layout = () => {
             />
             <Tab.Screen
                 name="AirPayScreen"
-                component={AirPayScreen}
+                component={AirPayScreenWithDrawer}
                 options={{
                     tabBarLabel: language?.languageData.layoutScreenLabels.airPay
                 }}

@@ -43,7 +43,7 @@ const AddBeneficiaryForm = ({
 }: AddBeneficiaryFormProps) => {
     const theme = useContext(ThemeContext);
     const language = useContext(LanguageContext);
-    
+
     return (
         <View style={styles.formContainer}>
             <TouchableOpacity
@@ -59,59 +59,59 @@ const AddBeneficiaryForm = ({
                 />
             </TouchableOpacity>
 
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: '0%', paddingTop: 0 }}>
+            <View style={styles.nameContainer}>
                 <TextField
-                    placeholder='Enter first name'
+                    label={language?.languageData.firstNameLabel}
+                    placeholder={language?.languageData.firstNamePlaceholder}
                     setValue={setFirstName}
                     value={firstName}
                     enableFocus={true}
-                    label='First name'
                     style={{ flex: 1, marginRight: '1.5%' }}
                 />
                 <TextField
-                    placeholder='Enter last name'
+                    label={language?.languageData.lastNameLabel}
+                    placeholder={language?.languageData.lastNamePlaceholder}
                     setValue={setLastName}
                     value={lastName}
                     enableFocus={true}
-                    label='Last name'
                     style={{ flex: 1, marginLeft: '1.5%' }}
                 />
             </View>
 
             <DropDownList
+                label={language?.languageData.bankBranchLabel}
                 data={bankBranches}
-                label='Bank branch'
                 selected={bankBranch}
                 setSelected={setBankBranch}
             />
 
             <TextField
+                label={language?.languageData.accountNumberLabel}
                 placeholder='EG150003004250008857447010180'
-                label='Account number'
                 enableFocus={true}
                 setValue={setAccountNumber}
                 value={accountNumber}
-                style={{ width: '100%', marginTop: '2%' }}
+                style={styles.textFieldStyle}
             />
 
             <TextField
+                label={language?.languageData.phoneNumberLabel}
                 placeholder='+20 101 131 5412'
-                label='Phone number'
                 enableFocus={true}
                 setValue={setPhoneNumber}
                 value={phoneNumber}
                 keyboardType='numeric'
-                style={{ width: '100%', marginTop: '2%' }}
+                style={styles.textFieldStyle}
             />
 
             <TextField
+                label={language?.languageData.emailLabel}
                 placeholder='theahmadsami@gmail.com'
-                label='Email'
                 keyboardType='email-address'
                 enableFocus={true}
                 setValue={setEmail}
                 value={email}
-                style={{ width: '100%', marginTop: '2%' }}
+                style={styles.textFieldStyle}
             />
         </View>
     )
@@ -134,4 +134,15 @@ const styles = StyleSheet.create({
         paddingHorizontal: 0,
         paddingTop: '5%',
     },
+
+    nameContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: '0%',
+        paddingTop: 0,
+    },
+    textFieldStyle: {
+        width: '100%',
+        marginTop: '2%'
+    }
 })

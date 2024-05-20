@@ -66,7 +66,6 @@ const BeneficiariesScreen = () => {
     return currentTemp === 2 ?
       <AddBeneficiaryTemplate
         goBack={() => setCurrentTemp(beneficiaryTemplates.BeneficiaryTemplate)}
-
       /> :
       <BeneficiaryDetails
         goBack={() => setCurrentTemp(beneficiaryTemplates.BeneficiaryTemplate)}

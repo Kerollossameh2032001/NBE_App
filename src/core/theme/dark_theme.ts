@@ -64,6 +64,10 @@ const darkTheme = {
             borderRadius: 10,
             //elevation: 12,
             padding: 10,
+            marginVertical: 20,
+            marginHorizontal: 10,
+            // width: 50,
+            // height: 50
         },
 
         elevatedButton: {
