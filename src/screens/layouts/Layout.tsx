@@ -100,7 +100,7 @@ const Layout = () => {
                 }}
             />
             <Tab.Screen
-                name="AirPayScreen"
+                name="AirPayWithDrawerScreen"
                 component={AirPayScreenWithDrawer}
                 options={{
                     tabBarLabel: language?.languageData.layoutScreenLabels.airPay

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Animated, Dimensions, FlatList, LayoutChangeEvent, PanResponder, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Animated, Dimensions, FlatList, LayoutChangeEvent, PanResponder, PanResponderGestureState, ScrollView, StyleSheet, Text, View } from 'react-native'
 import constantImages from '../../core/constants/constant_images'
 import DetailsCard from '../../components/organisms/home_oraganisms/DetailsCard'
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -42,8 +42,32 @@ export const AirPayScreenWithDrawer = () => {
 const AirPayScreen = () => {
     const navigation = useNavigation<any>();
     const theme = useContext(ThemeContext);
-    const data = [
-        { id: 1, image: constantImages.greenCard }, { id: 2, image: constantImages.redCard }, { id: 3, image: constantImages.greenCard }]
+    const [data, setData] = useState([
+        { id: 1, image: constantImages.greenCard },
+        { id: 2, image: constantImages.redCard },
+        { id: 3, image: constantImages.greenCard }
+    ]);
+
+    const dropAreaLayoutRef = useRef<{ x: number; y: number; width: number; height: number }>({ x: 0, y: 0, height: 0, width: 0 });
+    const [currentCardIndex, setCurrentCardIndex] = useState(0);
+    const handleDrop = (gesture: PanResponderGestureState) => {
+        if (!dropAreaLayoutRef) return false;
+
+        const { moveX, moveY } = gesture;
+        const { x, y, width, height } = dropAreaLayoutRef.current;
+
+        if (
+            moveX >= x &&
+            moveX <= x + width &&
+            moveY >= y &&
+            moveY <= y + height
+        ) {
+            //setData(prevData => prevData.filter((_, i) => i !== currentCardIndex));
+            return true;
+        }
+        return false;
+    };
+
 
     return (
         <View style={[theme?.ThemeData.containerStyles.layoutTemplateContainer, { flex: 1, backgroundColor: theme?.ThemeData.colors.backgroundColor }]}>
@@ -59,32 +83,39 @@ const AirPayScreen = () => {
                     <FlatList
                         style={[styles.flatList]}
                         data={data}
-                        renderItem={({ item }) => (
-                            <DragableComponent
-                                dropArea={(<View
-                                    style={[
-                                        styles.cardContainer,
-                                        { borderColor: theme?.ThemeData.colors.primary },
-                                        styles.dropArea
-                                    ]}>
-                                    <Text style={theme?.ThemeData.textStyle.labelMeduim}>Touch & hold a card then drag it</Text>
-                                    <Text style={theme?.ThemeData.textStyle.labelMeduim}>to this box</Text>
-                                </View>)}
-                                content={(
-                                    <View style={styles.cardContainer}>
-                                        <DetailsCard image={constantImages.greenCard} />
-                                    </View>
-                                )} />
-                        )}
+                        renderItem={({ item, index }) => {
+                            setCurrentCardIndex(index);
+                            return (
+                                <DragableComponent
+                                    dropAreaPosition={dropAreaLayoutRef}
+                                    onDrop={handleDrop}
+                                    content={(
+                                        <View style={styles.cardContainer}>
+                                            <DetailsCard image={item.image} />
+                                        </View>
+                                    )} />
+                            );
+                        }}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         keyExtractor={(item) => item.id.toString()}
                         pagingEnabled={true}
                     />
-
-
+                    <View
+                        onLayout={(event) => {
+                            const { width, x, y, height } = event.nativeEvent.layout
+                            dropAreaLayoutRef.current = { x, y, width, height };
+                        }}
+                        style={[
+                            styles.cardContainer,
+                            { borderColor: theme?.ThemeData.colors.primary },
+                            styles.dropArea
+                        ]}>
+                        <Text style={theme?.ThemeData.textStyle.labelMeduim}>Touch & hold a card then drag it</Text>
+                        <Text style={theme?.ThemeData.textStyle.labelMeduim}>to this box</Text>
+                    </View>
                 </View>
-                <CustomButton text='Play Now' onPress={() => { }} />
+                <CustomButton style={{ marginTop: '5%' }} text='Play Now' onPress={() => { }} />
             </View>
 
 
@@ -106,11 +137,13 @@ const styles = StyleSheet.create({
     },
 
     dropArea: {
+        position: 'absolute',
+        bottom: '3%',
         borderWidth: 2,
-        zIndex: -1000,
+        zIndex: -1,
         borderRadius: 27,
         width: Dimensions.get('window').width * 0.9, // Full width of the screen
-        height: '100%',
+        height: '45%',
         borderStyle: 'dashed',
     }
 

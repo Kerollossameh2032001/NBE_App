@@ -11,7 +11,7 @@ export type RootBottomTabParamList = {
   HomeWithDrawerScreen: undefined;
   BeneficiariesScreenWithDrawer: undefined;
   ATMsScreen: undefined;
-  AirPayScreen: undefined;
+  AirPayWithDrawerScreen: undefined;
   TransferScreen: undefined;
   // Details: {productId: string};
 };

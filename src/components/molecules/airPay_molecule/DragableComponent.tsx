@@ -1,23 +1,23 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Animated, LayoutChangeEvent, PanResponder, PanResponderGestureState, View } from "react-native";
+import { Animated, Dimensions, LayoutChangeEvent, PanResponder, PanResponderGestureState, View } from "react-native";
 
 
 type DragableComponentProps = {
     content: JSX.Element,
-    dropArea: JSX.Element,
+    onDrop: (gesture: PanResponderGestureState) => boolean;
+    dropAreaPosition: React.MutableRefObject<{
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }>
 }
-const DragableComponent = ({ content, dropArea }: DragableComponentProps) => {
+const DragableComponent = ({ content, onDrop, dropAreaPosition }: DragableComponentProps) => {
     // Create a ref to store the position of the card 
     const position = useRef(new Animated.ValueXY()).current;
     const initialPosition = useRef({ x: 0, y: 0 });
 
-    const [dropAreaY, setDropAreaY] = useState(0);
-    const dropAreaLayoutRef = useRef<{ x: number; y: number; width: number; height: number }>({ x: 0, y: 0, height: 0, width: 0 });
-
     const [dragging, setDragging] = useState(false);
-    const [zIndex, setZIndex] = useState(0); // State to manage zIndex
-    //const [dropAreaLayout, setDropAreaLayout] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
-    //const [x, setX] = useState<number | null>(null);
 
     // Create a pan responder to handle touch events 
     const panResponder = useRef(
@@ -29,48 +29,37 @@ const DragableComponent = ({ content, dropArea }: DragableComponentProps) => {
                 initialPosition.current = { x: 0, y: gesture.y0 };
                 // When touch gesture starts, set dragging to true 
                 setDragging(true);
-                setZIndex(1);
             },
             onPanResponderMove: (_, gesture) => {
                 if (gesture.dy > 3) {
-                    console.log(gesture.dy);
-
                     position.setValue({ x: 0, y: gesture.dy });
+                    // const dropAreaCoordinate = new Animated.ValueXY();
+                    // dropAreaCoordinate.setValue({ x: 0, y: dropAreaLayoutRef.current?.y - dropAreaLayoutRef.current?.height })
+                    // console.log('Dropped in area:', position.y >= dropAreaCoordinate.y);
+
                 }
             },
             onPanResponderRelease: (_, gesture) => {
                 // When touch gesture is released, set dragging to false 
                 // Animate the card back to its initial position 
                 setDragging(false);
-                setZIndex(0);
 
-                // position.flattenOffset();
-                console.log(dropAreaY);
                 position.flattenOffset();
 
-                // const dropAreaLayout = dropAreaLayoutRef.current;
-                // console.log('Card final position:', { x, y });
-                // console.log('Drop area layout:', dropAreaLayout);
-
-                if (dropAreaLayoutRef) {
-                    const { left: x, top: y } = position.getLayout();
-                    const droppedInArea = (
-                        Number(y) >= (dropAreaLayoutRef.current?.y - dropAreaLayoutRef.current?.height)
-                    );
-                    console.log("position y:", position.y);
-                    console.log(dropAreaLayoutRef.current?.y - dropAreaLayoutRef.current?.height);
-
-                    // console.log( Number(position.y) >= dropAreaLayoutRef.current?.y );
-                    const dropAreaCoordinate = new Animated.ValueXY();
-                    dropAreaCoordinate.setValue({ x: 0, y: dropAreaLayoutRef.current?.y - dropAreaLayoutRef.current?.height })
-                    console.log('Dropped in area:', position.y >= dropAreaCoordinate.y);
+                if (onDrop(gesture)) {
+                    console.log("Dropped inside the target area");
+                    Animated.spring(position, {
+                        toValue: { x: 0, y: dropAreaPosition.current.y -  Dimensions.get('window').height * 0.07},
+                        useNativeDriver: false,
+                    }).start();
+                } else {
+                    console.log("Dropped outside the target area");
+                    // Animate the card back to its initial position
+                    Animated.spring(position, {
+                        toValue: { x: 0, y: 0 },
+                        useNativeDriver: false,
+                    }).start();
                 }
-
-
-                Animated.spring(position, {
-                    toValue: { x: 0, y: dropAreaLayoutRef.current?.y ?? 0 },
-                    useNativeDriver: false,
-                }).start();
 
 
             },
@@ -88,7 +77,6 @@ const DragableComponent = ({ content, dropArea }: DragableComponentProps) => {
                         transform: position.getTranslateTransform(),
                         opacity: dragging ? 0.8 : 1,
                         height: '40%',
-                        //zIndex: 10000000
                     },
                 ]}
                 {...(panResponder.panHandlers)}
@@ -96,25 +84,6 @@ const DragableComponent = ({ content, dropArea }: DragableComponentProps) => {
                 {content}
 
             </Animated.View>
-
-
-            <View
-                style={{ height: '45%' }}
-                onLayout={(event) => {
-                    const { width, x, y, height } = event.nativeEvent.layout
-                    console.log(width);
-                    console.log(x);
-                    console.log(y);
-                    console.log('Saving');
-                    setDropAreaY(y);
-                    console.log(height);
-                    dropAreaLayoutRef.current = { x, y, width, height };
-                }}
-            >
-                {dropArea}
-            </View>
-
-
         </View>
 
     );
