@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { StyleProp, Text, TextStyle, TouchableOpacity, ViewStyle } from 'react-native'
+import { StyleProp, Text, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native'
 import { ThemeContext } from '../../../App';
 
 type CustomButtonProps = {
@@ -8,8 +8,9 @@ type CustomButtonProps = {
     onPress: () => void;
     style?: StyleProp<ViewStyle>;
     textStyle?: StyleProp<TextStyle>
+    suffix?: any
 }
-const CustomButton = ({ text, onPress, style, disabled, textStyle }: CustomButtonProps) => {
+const CustomButton = ({ text, onPress, style, disabled, textStyle, suffix }: CustomButtonProps) => {
     const theme = useContext(ThemeContext);
     return (
         <TouchableOpacity
@@ -26,6 +27,9 @@ const CustomButton = ({ text, onPress, style, disabled, textStyle }: CustomButto
                 { color: theme?.ThemeData.colors.textColor },
                 textStyle,
             ]}>{text}</Text>
+            <View style={{ position: 'absolute', right: '3%',}}>
+                {suffix}
+            </View>
         </TouchableOpacity>
     )
 }

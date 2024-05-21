@@ -11,8 +11,10 @@ type DragableComponentProps = {
         width: number;
         height: number;
     }>
+    index: number,
+    setCurrentIndex: React.Dispatch<React.SetStateAction<number | undefined>>
 }
-const DragableComponent = ({ content, onDrop, dropAreaPosition }: DragableComponentProps) => {
+const DragableComponent = ({ index, setCurrentIndex, content, onDrop, dropAreaPosition }: DragableComponentProps) => {
     // Create a ref to store the position of the card 
     const position = useRef(new Animated.ValueXY()).current;
     const initialPosition = useRef({ x: 0, y: 0 });
@@ -48,8 +50,10 @@ const DragableComponent = ({ content, onDrop, dropAreaPosition }: DragableCompon
 
                 if (onDrop(gesture)) {
                     console.log("Dropped inside the target area");
+                    setCurrentIndex(index)
                     Animated.spring(position, {
-                        toValue: { x: 0, y: dropAreaPosition.current.y -  Dimensions.get('window').height * 0.07},
+                        //toValue: { x: 0, y: dropAreaPosition.current.y -  Dimensions.get('window').height * 0.07},
+                        toValue: { x: 0, y: 0 },
                         useNativeDriver: false,
                     }).start();
                 } else {

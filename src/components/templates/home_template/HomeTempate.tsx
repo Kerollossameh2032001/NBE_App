@@ -16,7 +16,11 @@ const HomeTempate = ({ openDrawer }: HomeTempateProps) => {
     const theme = useContext(ThemeContext);
     const [isDetails, setIsDetails] = useState(false);
     const data = [
-        { id: 1, image: constantImages.greenCard }, { id: 2, image: constantImages.redCard }, { id: 3, image: constantImages.greenCard }]
+        { id: 1, image: constantImages.greenCard, accountNumber: '6506', balance: '$125,381.15' },
+        { id: 2, image: constantImages.redCard, accountNumber: '8524', balance: '$123,666.80' },
+        { id: 3, image: constantImages.greenCard, accountNumber: '9512', balance: '$11,156.80' }
+    ];
+
     return (
         <View style={{ flex: 1 }}>
 
@@ -28,7 +32,7 @@ const HomeTempate = ({ openDrawer }: HomeTempateProps) => {
                     data={data}
                     renderItem={({ item }) => (
                         <TouchableOpacity onPress={() => setIsDetails(!isDetails)} style={styles.cardContainer}>
-                            <DetailsCard image={item.image} />
+                            <DetailsCard balance={item.balance} accountNumber={item.accountNumber} image={item.image} />
                         </TouchableOpacity>
                     )}
                     horizontal={true}

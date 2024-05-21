@@ -9,9 +9,11 @@ import DetailsCardFooter from '../../molecules/home_molecules/DetailsCardFooter'
 
 type DetailsCardProps = {
     image: any
+    accountNumber: string,
+    balance: string
 }
 
-const DetailsCard = ({ image }: DetailsCardProps) => {
+const DetailsCard = ({ image, balance, accountNumber }: DetailsCardProps) => {
     const theme = useContext(ThemeContext);
     return (
         <ImageBackground
@@ -20,8 +22,8 @@ const DetailsCard = ({ image }: DetailsCardProps) => {
             source={image}
         >
             <View style={styles.contentContainer}>
-                <DetailsCardHeader />
-                <DetailsCardContent />
+                <DetailsCardHeader balance={balance} />
+                <DetailsCardContent accountNumber={accountNumber}/>
                 <DetailsCardFooter />
             </View>
         </ImageBackground>

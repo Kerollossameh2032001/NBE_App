@@ -75,6 +75,7 @@ const lightTheme = {
             borderRadius: 12.5,
             paddingVertical: 12,
             alignItems: "center",
+            justifyContent: 'center'
         },
 
     }),

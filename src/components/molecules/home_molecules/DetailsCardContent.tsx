@@ -3,14 +3,17 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 import constantImages from '../../../core/constants/constant_images'
 import { ThemeContext } from '../../../App'
 
-const DetailsCardContent = () => {
+type DetailsCardContentProps = {
+    accountNumber: string
+}
+const DetailsCardContent = ({ accountNumber }: DetailsCardContentProps) => {
     const theme = useContext(ThemeContext);
     return (
         <View style={styles.container}>
             <Text style={[theme?.ThemeData.textStyle.titleMeduim, styles.valueStyle]}>****</Text>
             <Text style={[theme?.ThemeData.textStyle.titleMeduim, styles.valueStyle]}>****</Text>
             <Text style={[theme?.ThemeData.textStyle.titleMeduim, styles.valueStyle]}>****</Text>
-            <Text style={[theme?.ThemeData.textStyle.titleMeduim, styles.valueStyle]}>6506</Text>
+            <Text style={[theme?.ThemeData.textStyle.titleMeduim, styles.valueStyle]}>{accountNumber}</Text>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Image style={{ marginRight: '1%' }} source={constantImages.VisaMetal} />
                 <Image source={constantImages.VisaWifi} />

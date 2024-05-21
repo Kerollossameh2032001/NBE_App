@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Animated, Dimensions, FlatList, LayoutChangeEvent, PanResponder, PanResponderGestureState, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Animated, Dimensions, FlatList, PanResponderGestureState, Image, StyleSheet, Text, View } from 'react-native'
 import constantImages from '../../core/constants/constant_images'
 import DetailsCard from '../../components/organisms/home_oraganisms/DetailsCard'
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -10,6 +10,7 @@ import CustomStatusBar from '../../components/atoms/global_atoms/CustomStatusBar
 import DrawerContent from '../../components/organisms/login_organisms/DrawerContent';
 import DragableComponent from '../../components/molecules/airPay_molecule/DragableComponent';
 import CustomButton from '../../components/atoms/global_atoms/CustomButton';
+import FingerPrint from '../../components/atoms/login_atoms/FingerPrint';
 
 
 
@@ -38,18 +39,26 @@ export const AirPayScreenWithDrawer = () => {
 }
 
 
+type dataItemType = {
+    id: number;
+    image: any; // Use appropriate type for image if you know it, e.g., ImageSourcePropType
+};
+
+
 
 const AirPayScreen = () => {
     const navigation = useNavigation<any>();
     const theme = useContext(ThemeContext);
-    const [data, setData] = useState([
-        { id: 1, image: constantImages.greenCard },
-        { id: 2, image: constantImages.redCard },
-        { id: 3, image: constantImages.greenCard }
-    ]);
+    const data = [
+        { id: 1, image: constantImages.greenCard, accountNumber: '6506', balance: '$125,381.15' },
+        { id: 2, image: constantImages.redCard, accountNumber: '8524', balance: '$123,666.80' },
+        { id: 3, image: constantImages.greenCard, accountNumber: '9512', balance: '$11,156.80' }
+    ];
 
     const dropAreaLayoutRef = useRef<{ x: number; y: number; width: number; height: number }>({ x: 0, y: 0, height: 0, width: 0 });
-    const [currentCardIndex, setCurrentCardIndex] = useState(0);
+    const [currentCardIndex, setCurrentCardIndex] = useState<number | undefined>();
+    //const [selectedItem, setSelectedItem] = useState<dataItemType | undefined>();
+
     const handleDrop = (gesture: PanResponderGestureState) => {
         if (!dropAreaLayoutRef) return false;
 
@@ -62,7 +71,9 @@ const AirPayScreen = () => {
             moveY >= y &&
             moveY <= y + height
         ) {
-            //setData(prevData => prevData.filter((_, i) => i !== currentCardIndex));
+            // console.log('ker');
+
+            // setSelectedItem({ id: data[currentCardIndex].id, image: data[currentCardIndex].image })
             return true;
         }
         return false;
@@ -84,14 +95,19 @@ const AirPayScreen = () => {
                         style={[styles.flatList]}
                         data={data}
                         renderItem={({ item, index }) => {
-                            setCurrentCardIndex(index);
                             return (
                                 <DragableComponent
+                                    index={index}
+                                    setCurrentIndex={setCurrentCardIndex}
                                     dropAreaPosition={dropAreaLayoutRef}
                                     onDrop={handleDrop}
                                     content={(
                                         <View style={styles.cardContainer}>
-                                            <DetailsCard image={item.image} />
+                                            <DetailsCard
+                                                accountNumber={item.accountNumber}
+                                                balance={item.balance}
+                                                image={item.image}
+                                            />
                                         </View>
                                     )} />
                             );
@@ -111,11 +127,27 @@ const AirPayScreen = () => {
                             { borderColor: theme?.ThemeData.colors.primary },
                             styles.dropArea
                         ]}>
-                        <Text style={theme?.ThemeData.textStyle.labelMeduim}>Touch & hold a card then drag it</Text>
-                        <Text style={theme?.ThemeData.textStyle.labelMeduim}>to this box</Text>
+                        {currentCardIndex === undefined ?
+                            <View>
+                                <Text style={theme?.ThemeData.textStyle.labelMeduim}>Touch & hold a card then drag it</Text>
+                                <Text style={theme?.ThemeData.textStyle.labelMeduim}>to this box</Text>
+                            </View> :
+                            <View style={[styles.cardContainer, { marginTop: '7%' }]}>
+                                <DetailsCard
+                                    accountNumber={data[currentCardIndex].accountNumber}
+                                    balance={data[currentCardIndex].balance}
+                                    image={data[currentCardIndex].image}
+                                />
+                            </View>
+                        }
+
                     </View>
                 </View>
-                <CustomButton style={{ marginTop: '5%' }} text='Play Now' onPress={() => { }} />
+                <CustomButton
+                    style={{marginTop: '5%', }}
+                    text='Play Now'
+                    suffix={(<Image style={{ width: 32, height: 32 }} source={constantImages.meduimFingerIcon} />)}
+                    onPress={() => { }} />
             </View>
 
 

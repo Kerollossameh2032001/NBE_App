@@ -14,6 +14,7 @@ const constantImages = {
     listTabIcon: require('../../../assets/images/list_tab_icon.png'),
     noContentIcon: require('../../../assets/images/no_content_image.png'),
     beneficiaryEmptyIcon: require('../../../assets/images/beneficiary_empty.png'),
+    meduimFingerIcon: require('../../../assets/images/meduim_finger_icon.png'),
 
     connectionDummeyData: {
         image1: require('../../../assets/images/dummey_data/connection/image1.png'),
