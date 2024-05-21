@@ -27,7 +27,7 @@ const CustomButton = ({ text, onPress, style, disabled, textStyle, suffix }: Cus
                 { color: theme?.ThemeData.colors.textColor },
                 textStyle,
             ]}>{text}</Text>
-            <View style={{ position: 'absolute', right: '3%',}}>
+            <View style={{ position: 'absolute', right: '3%', }}>
                 {suffix}
             </View>
         </TouchableOpacity>

@@ -135,6 +135,14 @@ const arabicText = {
     phoneNumberLabel: 'رقم الهاتف',
     emailLabel: 'البريد الإلكتروني',
     addBeneficiaryBtnTxt: 'إضافة مستفيد',
+
+    ///air pay screen
+    airPayTitle: 'بطاقات',
+    airPayBtnTxt: 'ادفع الان',
+    dropArea: {
+        title1: 'المس واضغط مع الاستمرار على البطاقة ثم اسحبها',
+        title2: 'إلى هذا الصندوق',
+    }
 }
 
 export default arabicText;

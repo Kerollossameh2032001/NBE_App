@@ -133,7 +133,15 @@ const englishText = {
     accountNumberLabel: 'Account number',
     phoneNumberLabel: 'Phone number',
     emailLabel: 'Email',
-    addBeneficiaryBtnTxt: 'Add Beneficiar'
+    addBeneficiaryBtnTxt: 'Add Beneficiar',
+
+    ///air pay screen
+    airPayTitle: 'Cards',
+    airPayBtnTxt: 'Play Now',
+    dropArea: {
+        title1: 'Touch & hold a card then drag it',
+        title2: 'to this box',
+    }
 }
 
 export default englishText;
