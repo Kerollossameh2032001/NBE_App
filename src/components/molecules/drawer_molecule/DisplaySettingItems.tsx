@@ -8,6 +8,8 @@ import OffersIcon from '../../atoms/global_atoms/drawer_setting_icon/OffersIcon'
 import CalculatorIcon from '../../atoms/global_atoms/drawer_setting_icon/CalculatorIcon'
 import { Switch } from 'react-native-gesture-handler'
 import { LanguageContext, ThemeContext } from '../../../App'
+import { setData } from '../../../core/services/CacheHelper'
+import { DARK_MODE_KEY } from '../../../core/constants/ConstantKeys'
 
 const DisplaySettingItems = () => {
     const theme = useContext(ThemeContext);
@@ -30,7 +32,10 @@ const DisplaySettingItems = () => {
                         trackColor={{ false: '#767577', true: theme?.ThemeData.colors.secondary }}
                         thumbColor={theme?.currentTheme ? theme?.ThemeData.colors.primary : theme?.ThemeData.colors.textColor}
                         ios_backgroundColor="rgb(62, 62, 62)"
-                        onValueChange={() => theme?.setIsDarkMode(!theme.currentTheme)}
+                        onValueChange={async () => {
+                            theme?.setIsDarkMode(!theme.currentTheme);
+                            await setData(DARK_MODE_KEY, !theme?.currentTheme)
+                        }}
                         value={theme?.currentTheme}
                     />
                 }

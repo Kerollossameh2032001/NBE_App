@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, useColorScheme, View } from 'react-native';
 
 //constant-components
@@ -11,7 +11,6 @@ import { RootStackParamList } from './core/constants/RootStackParamList';
 //Navigations
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
 //screens
 import SplashScreen from './screens/authentication/SplashScreen';
@@ -19,7 +18,8 @@ import LoginScreen from './screens/authentication/LoginScreen';
 import SignUpScreen from './screens/authentication/SignUpScreen';
 
 import Layout from './screens/layouts/Layout';
-import HomeScreen from './screens/layouts/HomeScreen';
+import { getData } from './core/services/CacheHelper';
+import { DARK_MODE_KEY, English_KEY } from './core/constants/ConstantKeys';
 
 
 type Theme = {
@@ -45,6 +45,16 @@ export const LanguageContext = createContext<Language | undefined>(undefined);
 function App(): React.JSX.Element {
   const [isDarkMode, setIsDarkMode] = useState(useColorScheme() === 'dark');
   const [isEnglish, setIsEnglish] = useState(true);
+
+  useEffect(() => {
+    const fetchPreferences = async () => {
+      const darkMode = await getData(DARK_MODE_KEY);
+      const language = await getData(English_KEY);
+      setIsDarkMode(darkMode === -1 ? useColorScheme() === 'dark' : darkMode);
+      setIsEnglish(language === -1 ? true : language);
+    };
+    fetchPreferences();
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ currentTheme: isDarkMode, ThemeData: isDarkMode ? darkTheme : lightTheme, setIsDarkMode }}>

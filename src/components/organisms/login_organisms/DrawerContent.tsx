@@ -12,6 +12,8 @@ import DisplayAccountTitle from '../../molecules/global_molecules/DisplayAccount
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import DisplayProfile from '../../molecules/drawer_molecule/DisplayProfile';
+import { setData } from '../../../core/services/CacheHelper';
+import { English_KEY } from '../../../core/constants/ConstantKeys';
 
 const DrawerContent = (props: DrawerContentComponentProps) => {
     const language = useContext(LanguageContext);
@@ -22,9 +24,12 @@ const DrawerContent = (props: DrawerContentComponentProps) => {
 
                 <View style={styles.drawerHeader}>
                     <DisplayAppBrand />
-                    {<CustomToggleButton text='AR' onPress={() => { language?.setIsEnglish(!language.currentLang) }} />}
+                    {<CustomToggleButton text='AR' onPress={async () => {
+                        language?.setIsEnglish(!language.currentLang);
+                        await setData(English_KEY, !language?.currentLang);
+                    }} />}
                 </View>
-                
+
                 <DisplaySettingItems />
             </DrawerContentScrollView>
             <View>
