@@ -8,6 +8,8 @@ const constantImages = {
     VisaMetal: require('../../../assets/images/visa_metal.png'),
     VisaWifi: require('../../../assets/images/visa_wifi.png'),
     successModal: require('../../../assets/images/success_modal.png'),
+    errorCardModal: require('../../../assets/images/error_cards.png'),
+    successCardModal: require('../../../assets/images/success_cards.png'),
 
     gridTabIcon: require('../../../assets/images/grid_tab_icon.png'),
     addIcon: require('../../../assets/images/add_icon.png'),

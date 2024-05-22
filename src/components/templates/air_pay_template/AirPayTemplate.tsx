@@ -6,6 +6,10 @@ import constantImages from '../../../core/constants/constant_images';
 import DetailsCard from '../../organisms/home_oraganisms/DetailsCard';
 import CustomButton from '../../atoms/global_atoms/CustomButton';
 import SelectCard from '../../organisms/air_pay_organisms/SelectCard';
+import CustomModal from '../../molecules/global_molecules/CustomModal';
+import ErrorAirPayModal from '../../molecules/airPay_molecule/ErrorAirPayModal';
+import SuccessAirPayModel from '../../molecules/airPay_molecule/SuccessAirPayModel';
+
 
 
 const AirPayTemplate = () => {
@@ -36,6 +40,7 @@ const AirPayTemplate = () => {
         return false;
     };
 
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <View style={{ flex: 1 }}>
@@ -46,11 +51,21 @@ const AirPayTemplate = () => {
                 setCurrentCardIndex={setCurrentCardIndex}
                 data={data}
             />
+
             <CustomButton
                 style={{ marginTop: '5%', }}
                 text={language?.languageData.airPayBtnTxt}
                 suffix={(<Image style={{ width: 32, height: 32 }} source={constantImages.meduimFingerIcon} />)}
-                onPress={() => { }} />
+                onPress={() => { setShowModal(true) }} />
+
+            <CustomModal
+                isModalVisible={showModal}
+                content={
+                    currentCardIndex === 1 ?
+                        <SuccessAirPayModel onPress={() => { setShowModal(false) }} /> :
+                        <ErrorAirPayModal onPress={() => { setShowModal(false) }}/>
+                }
+            />
         </View>
 
     )

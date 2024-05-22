@@ -7,6 +7,7 @@ import VerificationContent from '../../organisms/signUp_organisms/VerificationCo
 
 import constantImages from '../../../core/constants/constant_images'
 import CustomModal from '../../molecules/global_molecules/CustomModal'
+import SuccessTransferModalContent from '../../molecules/Transfer_molecules/SuccessTransferModalContent'
 
 type OTPTemplateProps = {
     goNext: () => void
@@ -52,14 +53,15 @@ const OTPTemplate = ({ goNext }: OTPTemplateProps) => {
                 text={language?.languageData.submitBtnText}
                 onPress={() => setShowModal(true)}
             />
+
             <CustomModal
                 isModalVisible={showModal}
-                finishEvent={() => {
-                    setShowModal(false);
-                    goNext();
-                }}
-                title='Mission Complete'
-                subTitle={'Transfer to Jsmine Robert' + '\n' + 'was successful'} />
+                content={<SuccessTransferModalContent
+                    onPress={() => {
+                        setShowModal(false);
+                        goNext();
+                    }} />}
+            />
         </View>
     )
 }

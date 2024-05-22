@@ -7,12 +7,13 @@ import constantImages from '../../../core/constants/constant_images';
 import { ThemeContext } from '../../../App';
 
 type CustomModalProps = {
-  title: string | undefined,
-  subTitle: string | undefined,
+  // title: string | undefined,
+  // subTitle: string | undefined,
   isModalVisible: boolean,
-  finishEvent: () => void
+  content: JSX.Element
+  // finishEvent: () => void
 }
-const CustomModal = ({ subTitle, title, isModalVisible, finishEvent }: CustomModalProps) => {
+const CustomModal = ({ content, isModalVisible, }: CustomModalProps) => {
   const theme = useContext(ThemeContext);
   return (
     <Modal
@@ -25,14 +26,7 @@ const CustomModal = ({ subTitle, title, isModalVisible, finishEvent }: CustomMod
         styles.modalContainer,
         { backgroundColor: theme?.ThemeData.inputStyles.primaryInputColors.backgroundColor }
       ]}>
-        <Image source={constantImages.successModal} />
-        <TitlesComponent
-          title={title}
-          subTitle={subTitle}
-        />
-        <View style={{ width: '100%', paddingTop: '10%' }}>
-          <CustomButton text='Finish' onPress={finishEvent} />
-        </View>
+        {content}
       </View>
     </Modal>
   )

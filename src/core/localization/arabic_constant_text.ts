@@ -142,6 +142,20 @@ const arabicText = {
     dropArea: {
         title1: 'المس واضغط مع الاستمرار على البطاقة ثم اسحبها',
         title2: 'إلى هذا الصندوق',
+    },
+
+    airPayModal: {
+        successText: {
+            title: 'المهمة اكتملت',
+            subTitle: 'تم الدفع لـ IKEA بنجاح',
+            btnText: 'تم'
+        },
+        errorText: {
+            title: 'عذرًا...',
+            subTitle: 'لم تتم عملية الدفع الخاصة بك',
+            cancelBtn: 'إلغاء',
+            tryAgainBtn: 'حاول مرة أخرى',
+        }
     }
 }
 

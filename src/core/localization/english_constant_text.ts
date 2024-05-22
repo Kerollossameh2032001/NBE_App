@@ -141,6 +141,20 @@ const englishText = {
     dropArea: {
         title1: 'Touch & hold a card then drag it',
         title2: 'to this box',
+    },
+
+    airPayModal: {
+        successText: {
+            title: 'Mission Complete',
+            subTitle: 'Your payment to IKEA was successful',
+            btnText: 'Done'
+        },
+        errorText: {
+            title: 'Ooops...',
+            subTitle: 'Your payment didn’t go through',
+            cancelBtn: 'Cancel',
+            tryAgainBtn: 'Try Again',
+        }
     }
 }
 
