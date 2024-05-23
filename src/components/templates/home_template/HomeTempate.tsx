@@ -28,16 +28,27 @@ const HomeTempate = ({ openDrawer }: HomeTempateProps) => {
 
             {isDetails ?
                 <FlatList
-                    style={styles.flatList}
+                    style={[styles.flatList]}
                     data={data}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => setIsDetails(!isDetails)} style={styles.cardContainer}>
-                            <DetailsCard balance={item.balance} accountNumber={item.accountNumber} image={item.image} />
-                        </TouchableOpacity>
-                    )}
+                    renderItem={({ item, index }) => {
+                        return (
+                            <TouchableOpacity onPress={() => setIsDetails(!isDetails)}>
+                                <View style={styles.cardContainer}>
+                                    <DetailsCard
+                                        accountNumber={item.accountNumber}
+                                        balance={item.balance}
+                                        image={item.image}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+
+
+                        );
+                    }}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={(item) => item.id.toString()}
+                    pagingEnabled={true}
                 /> :
                 <TouchableOpacity onPress={() => setIsDetails(!isDetails)}>
                     <BalanceCard />
@@ -53,10 +64,11 @@ const HomeTempate = ({ openDrawer }: HomeTempateProps) => {
 }
 const styles = StyleSheet.create({
     flatList: {
-        flex: 1,
+        maxHeight: Dimensions.get('window').height * 0.34,
     },
     cardContainer: {
-        width: Dimensions.get('window').width * 0.92,
+        height: Dimensions.get('window').height * 0.36,
+        width: Dimensions.get('window').width * 0.9,
         justifyContent: 'center',
         alignItems: 'center',
     },

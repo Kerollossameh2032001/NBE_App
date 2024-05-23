@@ -29,7 +29,7 @@ const DropArea = ({ data, currentCardIndex, dropAreaLayoutRef }: DropAreaProps) 
             }}
             style={[
                 styles.cardContainer,
-                { borderColor: theme?.ThemeData.colors.primary },
+                { borderColor: theme?.ThemeData.colors.primary, },
                 styles.dropArea
             ]}>
             {currentCardIndex === undefined ?
@@ -37,7 +37,9 @@ const DropArea = ({ data, currentCardIndex, dropAreaLayoutRef }: DropAreaProps) 
                     <Text style={theme?.ThemeData.textStyle.labelMeduim}>{language?.languageData.dropArea.title1}</Text>
                     <Text style={theme?.ThemeData.textStyle.labelMeduim}>{language?.languageData.dropArea.title2}</Text>
                 </View> :
-                <View style={[styles.cardContainer, { marginTop: '7%' }]}>
+                <View style={[styles.cardContainer, {
+                    marginTop: '7%',
+                }]}>
                     <DetailsCard
                         accountNumber={data[currentCardIndex].accountNumber}
                         balance={data[currentCardIndex].balance}
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         zIndex: -1,
         borderRadius: 27,
-        width: Dimensions.get('window').width * 0.9, // Full width of the screen
+        width: Dimensions.get('window').width * 0.92,
         height: '45%',
         borderStyle: 'dashed',
     }

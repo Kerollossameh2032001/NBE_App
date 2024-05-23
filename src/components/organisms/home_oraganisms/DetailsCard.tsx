@@ -23,7 +23,7 @@ const DetailsCard = ({ image, balance, accountNumber }: DetailsCardProps) => {
         >
             <View style={styles.contentContainer}>
                 <DetailsCardHeader balance={balance} />
-                <DetailsCardContent accountNumber={accountNumber}/>
+                <DetailsCardContent accountNumber={accountNumber} />
                 <DetailsCardFooter />
             </View>
         </ImageBackground>

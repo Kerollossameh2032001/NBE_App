@@ -1,22 +1,14 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useContext } from 'react'
 import { Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faBell, faFile } from '@fortawesome/free-regular-svg-icons';
-import { faMoneyCheck, faCreditCard } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import constantImages from '../../core/constants/constant_images';
 import { ThemeContext } from '../../App';
-import DisplayAccountTitle from '../../components/molecules/global_molecules/DisplayAccountTitle';
-import NotificationButton from '../../components/atoms/global_atoms/NotificationButton';
+
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import {RootDrawerParamList } from '../../core/constants/RootStackParamList';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import TransferScreen from './TransferScreen';
 import DrawerContent from '../../components/organisms/login_organisms/DrawerContent';
-import ChartIcon from '../../components/atoms/global_atoms/drawer_setting_icon/chartIcon';
-import CertificateIcon from '../../components/atoms/global_atoms/drawer_setting_icon/CertificateIcon';
-import Payment from '../../components/atoms/global_atoms/drawer_setting_icon/Payment';
+
 import CustomStatusBar from '../../components/atoms/global_atoms/CustomStatusBar';
 import HomeTempate from '../../components/templates/home_template/HomeTempate';
 
