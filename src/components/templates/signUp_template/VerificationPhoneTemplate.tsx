@@ -8,9 +8,11 @@ import VerificationContent from '../../organisms/signUp_organisms/VerificationCo
 
 type VerificationPhoneTemplateProps = {
     phoneNumber: string,
-    goNext: () => void
+    goNext: () => void,
+    confirmCode: (code: string) => Promise<void>
+    error: string
 }
-function VerificationPhoneTemplate({ phoneNumber, goNext }: VerificationPhoneTemplateProps) {
+function VerificationPhoneTemplate({ phoneNumber, goNext, confirmCode, error }: VerificationPhoneTemplateProps) {
     const theme = useContext(ThemeContext);
     const language = useContext(LanguageContext);
     const [digitOne, setDigitOne] = useState<string>('');
@@ -38,15 +40,16 @@ function VerificationPhoneTemplate({ phoneNumber, goNext }: VerificationPhoneTem
                 setDigitFour={setDigitFour}
                 setDigitFive={setDigitFive}
             />
-
+            {error ? <Text style={{color:'red'}}>{error}</Text> : null}
             <CustomButton
                 disabled={(digitOne === '' || digitTwo === '' || digitThree === '' || digitFour === '' || digitFive === '')}
                 style={[styles.buttonStyle, styles.bottomContent]}
                 text={language?.languageData.nextBtnText}
                 onPress={() => {
                     //Verify Digit Function
+                    confirmCode(digitOne + digitTwo + digitThree + digitFour + digitFive)
                     //if True
-                    goNext();
+                    error ? null : goNext();
                 }}
             />
 

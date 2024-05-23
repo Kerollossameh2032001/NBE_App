@@ -60,7 +60,7 @@ function App(): React.JSX.Element {
     <ThemeContext.Provider value={{ currentTheme: isDarkMode, ThemeData: isDarkMode ? darkTheme : lightTheme, setIsDarkMode }}>
       <LanguageContext.Provider value={{ currentLang: isEnglish, languageData: isEnglish ? englishText : arabicText, setIsEnglish }}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Layout'>
+          <Stack.Navigator initialRouteName='SplashScreen'>
             <Stack.Screen
               name='SplashScreen'
               component={SplashScreen}

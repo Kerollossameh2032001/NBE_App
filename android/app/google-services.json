@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "951023129364",
+    "project_id": "nbe-react-native-cca03",
+    "storage_bucket": "nbe-react-native-cca03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:951023129364:android:b8178cf72083a1c3b52801",
+        "android_client_info": {
+          "package_name": "com.nbe_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnT0XwRTxdYSSnbBkWZ5xE42hmxHxjNEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
