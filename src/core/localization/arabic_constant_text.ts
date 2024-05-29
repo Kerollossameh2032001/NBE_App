@@ -1,6 +1,4 @@
 const arabicText = {
-
-
     //login constant text
     loginTitle1: 'مرحبًا بك في',
     loginTitle2: 'البنك الاهلي',

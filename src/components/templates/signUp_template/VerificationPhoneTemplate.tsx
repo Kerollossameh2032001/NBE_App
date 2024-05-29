@@ -49,7 +49,8 @@ function VerificationPhoneTemplate({ phoneNumber, goNext, confirmCode, error }: 
                     //Verify Digit Function
                     confirmCode(digitOne + digitTwo + digitThree + digitFour + digitFive)
                     //if True
-                    error ? null : goNext();
+                    //error ? null : goNext();
+                    goNext();
                 }}
             />
 
